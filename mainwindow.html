@@ -1,0 +1,45 @@
+<html>
+<HEAD>
+  <SCRIPT TYPE="text/javascript">
+  <!--
+  function popup(mylink, windowname) {
+    if (! window.focus)
+      return true;
+    var href;
+    if (typeof(mylink) == 'string')
+      href=mylink;
+    else
+      href=mylink.href;
+    window.open(href, windowname, 'width=400,height=200,scrollbars=yes');
+    return false;
+  }
+  //-->
+  </SCRIPT>
+
+</HEAD>
+<body>
+  <A HREF="popupwindow.html" onClick="return popup(this, 'myPopupName')">my popup</A>
+  <br><br><br>
+  <input type="button" value="pop up" name="btnname" id="btn" onclick="popupmanage();">
+  <script>
+  function popupmanage(){
+      //create popup window
+      var domain = 'http://localhost';
+      var myPopup = window.open(domain + '/HTML_Samples/popupwindow.html','popupwindow','width=500, height=300');
+
+      //periodical message sender
+      setInterval(function(){
+      	var message = 'Hello!  The time is: ' + (new Date().getTime());
+      	console.log('blog.local:  sending message:  ' + message);
+      	myPopup.postMessage(message,domain); //send the message and target URI
+      },1000);
+
+      //listen to holla back
+      window.addEventListener('message',function(event) {
+      	if(event.origin !== 'http://localhost') return;
+      	console.log('received response:  ',event.data);
+      },false);
+}
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<html>
+<body>
+  <form id='myForm'>
+    <p>Github Id: <input id ="inputGitId" type="text" name="githubid" required></p>
+    <input type="button" name="first_btn" value="first btn" id="first_btn">
+    <input type="button" name="second_btn" value="second btn" id="second_btn">
+</form>
+
+
+<script>
+document.getElementById('first_btn').onclick = function() {
+    console.log("first");
+    //postCallSubmit("http://www.w3schools.com/js/demo_form.asp","post");
+    //postCall1();
+    postcall2();
+    //form.action = "https://foo.com";
+    //form.submit();
+}
+function postcall2(){
+  xmlhttp = new XMLHttpRequest();
+  var url = "https://api.parse.com/1/classes/english";
+  xmlhttp.open("POST", url, true);
+  xmlhttp.setRequestHeader("Content-type", "application/json");
+  xmlhttp.setRequestHeader("X-Parse-Application-Id", "VnxVYV8ndyp6hE7FlPxBdXdhxTCmxX1111111");
+  xmlhttp.setRequestHeader("X-Parse-REST-API-Key","6QzJ0FRSPIhXbEziFFPs7JvH1l11111111");
+  xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          alert(xmlhttp.responseText);
+      }
+  }
+  var parameters = {
+      "ephrase": "english",
+      "pphrase": "farsi",
+       "nvote": 0,
+      "yvote": 0
+  };
+  xmlhttp.send(JSON.stringify(parameters));
+}
+function postCall1(){
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+        alert(xhr.responseText);
+    }
+}
+xhr.open('POST', 'http://www.w3schools.com/js/demo_form.asp', true);
+xhr.send(null);
+}
+document.getElementById('second_btn').onclick = function() {
+    console.log("second");
+    //form.action = "https://bar.com";
+    //form.submit();
+}
+function postCallSubmit(path, method) {
+    method = method || "post";
+    var form = document.getElementById("myForm");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    // for(var key in params) {
+    //     if(params.hasOwnProperty(key)) {
+    //         var hiddenField = document.createElement("input");
+    //         hiddenField.setAttribute("type", "hidden");
+    //         hiddenField.setAttribute("name", key);
+    //         hiddenField.setAttribute("value", params[key]);
+    //
+    //         form.appendChild(hiddenField);
+    //      }
+    // }
+
+    //document.body.appendChild(form);
+    form.submit();
+}
+</script>
+</body>
+
+</html>

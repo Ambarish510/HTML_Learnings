@@ -1,0 +1,33 @@
+<html>
+<body onload="GetGidFromDB('ambarish.a@flipkart.com')">
+
+  <script>
+
+  function GetGidFromDB(email)
+  {
+      var apiGithubManage = "http://172.31.4.29:18800/githubAccount/";
+      var theUrl = apiGithubManage+'?email_id='+email
+      console.log("theUrl: "+theUrl);
+      var xmlHttp = new XMLHttpRequest();
+      var gid='';
+      var gids=[];
+      xmlHttp.onreadystatechange = function() {
+        console.log(xmlHttp.readyState+" " + xmlHttp.status);
+        if (xmlHttp.readyState == 4){
+          if(xmlHttp.status == 200){
+            gids=JSON.parse(xmlHttp.responseText);
+            console.log(gids);
+            //gid = gids[0];
+            //console.log(gid);
+          }else if(xmlHttp.status == 404){
+            //gids='';
+          }
+        }
+        console.log("gids"+gids);
+      }
+      xmlHttp.open("GET", theUrl, true); // true for asynchronous
+      xmlHttp.send(null);
+  }
+  </script>
+</body>
+</html>

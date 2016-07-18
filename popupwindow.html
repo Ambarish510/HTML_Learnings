@@ -1,0 +1,33 @@
+<html>
+<head>
+  <SCRIPT TYPE="text/javascript">
+  <!--
+  function targetopener(mylink, closeme, closeonly) {
+    if (! (window.focus && window.opener))
+      return true;
+    window.opener.focus();
+    if (! closeonly)
+      window.opener.location.href=mylink.href;
+    if (closeme)
+      window.close();
+    return false;
+  }
+  //-->
+  </SCRIPT>
+</head>
+<body>
+  <h2> welcome </h2>
+  <br><br><br>
+  <A HREF="rbex.html" onClick="return targetopener(this)">my page</A>
+<script>
+//respond to events
+window.addEventListener('message',function(event) {
+	if(event.origin !== 'https://localhost') return;
+	console.log('message received:  ' + event.data,event);
+	event.source.postMessage('holla back youngin!',event.origin);
+},false);
+</script>
+
+</body>
+
+</html>

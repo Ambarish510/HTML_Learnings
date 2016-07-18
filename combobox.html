@@ -1,0 +1,57 @@
+<html>
+<head>
+<!--script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script-->
+   <script>
+    function onloadFunction(){
+        var listOfOptions = ["item1","item2","abc"];
+        createSelectOptions(listOfOptions);
+    }
+    function createSelectOptions(listOfOptions){
+      var temp=0;
+      for(temp in listOfOptions){
+        var optionNode = document.createElement("option");
+        optionNode.value = listOfOptions[temp];
+        optionNode.appendChild(document.createTextNode(listOfOptions[temp]));
+        document.getElementById("select").appendChild(optionNode);
+      }
+      document.getElementById("select").size = temp+1;
+      document.getElementById("select").selectedIndex = 0;
+      //$('#select').attr('size',temp+1);
+      populateTextBox();
+      hideDrop();
+    }
+    function populateTextBox(){
+        var yourSelect = document.getElementById( "select" );
+        var val = yourSelect.options[ yourSelect.selectedIndex ].value;
+        //var val = $("#select option:selected").text();
+        document.getElementById("input").value = val;
+        //$("#input").val(val);
+        //hideDrop();
+    }
+    function hideDrop(){
+      //$("#select").hide();
+      document.getElementById("select").style.display = 'none';
+    }
+    function showDrop(){
+      populateTextBox();
+      // var val = $("#select option:selected").text();
+      // $("#input").val(val);
+      //$("#select").show();
+      document.getElementById("select").style.display = 'inline';
+    }
+    function optionSelected(){
+      populateTextBox();
+      hideDrop();
+    }
+   </script>
+    </head>
+<body onload="onloadFunction();">
+   <div id="containerComboBox"  >
+     <input id="input" name="" type="text" style="width: 100px;" onclick="showDrop();" onkeypress="hideDrop();" required="required"/>
+     <br>
+     <select id="select" name="" style="display:none;width: 100px;" onclick="optionSelected();">
+     </select>
+   </div>
+   <input type="button" value="done" name="done" id="btnDone" onclick="console.log('value: '+document.getElementById('input').value);">
+</body>
+</html>

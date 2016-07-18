@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click "Try it". Wait 3 seconds. The page will alert "Hello".</p>
+<p>Click "Stop" to prevent the first function to execute.</(p>
+<p>(You must click "Stop" before the 3 seconds are up.)</p>
+
+<button onclick="myVar1 = setTimeout(myFunction, 3000)">Try setTimeout</button>
+<button onclick="clearTimeout(myVar1)">Stop setTimeout</button>
+
+<p id="demo"></p>
+
+<button onclick="myVar2 = setInterval(myTimer, 1000)">Try setInterval</button>
+<button onclick="clearInterval(myVar2)">Stop setInterval</button>
+<script>
+function myFunction() {
+    alert("Hello");
+}
+function myTimer() {
+    var d = new Date();
+    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+}
+</script>
+</body>
+</html>

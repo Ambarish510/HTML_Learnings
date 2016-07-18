@@ -1,0 +1,22 @@
+<html>
+<body onload="sampleFunc();">
+  <script>
+    function sampleFunc(){
+      var str = "Visit W3Schools for IT";
+      console.log("str: "+str);
+
+      var n = str.search(/w3schools/i);
+      console.log("str.search(/w3schools/i) :"+n);
+
+      var res = str.replace(/W3Schools/i, "Replaced Text");
+      console.log('str.replace(/W3Schools/i, "Replaced Text"): '+res);
+      console.log("str: "+str);
+
+      var ng = str.match(/it/g);
+      console.log("str.match(/it/g): "+ng);
+      console.log("str.match(/it/gi): "+str.match(/it/gi));
+
+    }
+  </script>
+</body >
+</html>
