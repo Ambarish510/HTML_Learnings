@@ -2,29 +2,37 @@
 <html>
 <body>
 
-<button type="button"
+<!--button type="button"
 onclick="document.getElementById('demo1').innerHTML = Date()">
 Click me to display Date and Time.</button>
-<p id="demo1"></p>
+<p id="demo1"></p-->
 
-<p>Please input a number between 1 and 10:</p>
-<input id="numb">
+<p>Click submit to run JS function:</p>
+<!--input id="numb"-->
 <button type="button" onclick="myFunction()">Submit</button>
 <p id="demo2"></p>
 <script>
 function myFunction() {
-    var x, text;
+    theUrl  = "http://10.85.43.1:8080/compute/v2/apps/fk-art-push/zones/in-mumbai-prod/instances?view=summary"
+    //theUrl = "http://10.85.52.194/api/suggest?type=metrics&q=fk-art-push&max=5000"
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            //callback(xmlHttp.responseText);
+            var o=JSON.parse(xmlHttp.responseText);
+            console.log(o);
+            //document.getElementById("demo2").innerHTML = o[1].hostname;
 
-    // Get the value of the input field with id="numb"
-    x = document.getElementById("numb").value;
-
-    // If x is Not a Number or less than one or greater than 10
-    if (isNaN(x) || x < 1 || x > 10) {
-        text = "Input not valid";
-    } else {
-        text = "Input OK";
     }
-    document.getElementById("demo2").innerHTML = text;
+    console.log("making get call")
+    xmlHttp.open("GET", theUrl, false); // true for asynchronous
+    //xmlHttp.setRequestHeader('X-Flipkart-Client', 'kloud-cli');
+    //xmlHttp.setRequestHeader('Access-Control-Allow-Origin','http://127.0.0.1:8000/');
+    xmlHttp.setRequestHeader('Access-Control-Allow-Origin','*');
+
+    xmlHttp.send();
+    //httpGetAsync(aUrl)
+
 }
 </script>
 </body>
